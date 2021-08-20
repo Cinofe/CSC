@@ -174,7 +174,7 @@ def main(Dpath=None,Tpath=None,exe=None):
     forders = os.listdir(Dfilepath)
     for f in forders:
         fpath = Dfilepath+f
-        shutil.rmtree(fpath)
+        os.remove(fpath)
     
     #txt 폴더 청소
     forders = os.listdir(Tfilepath)
