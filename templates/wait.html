@@ -6,19 +6,19 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel = "stylesheet">
     <link rel = "shortcut icon" href = "favicon.ico" type="image/x-icon">
     <link rel = "stylesheet" type = "text/css" href = "{{url_for('static', filename='css/style.css')}}">
-    <title>Term</title>
+    <title>Term</title> 
 </head>
-<body>
+<body onload="brython()">
     <div class = "wrap">
         <h1><span class = "material-icons">article</span></h1>
         <h2 style = " font-size: 4rem;">Term</h2>
-        <span class="text"></span><span class = "blink2">업로드가 완료되었습니다.</span>
-        <form method="GET" action='download_file'>
-            <button type="submit">다운로드</button>
-        </form>
-        <form action="/" enctype="multipart/form-data" method="POST">
-            <button type="button" class="btn btn-primary"onClick="location.href='/'">확인</button>
-        </form>
+        <span class="text"></span><span class = "blink">처리중입니다.</span>
+                <div class = "load" style = "margin : 60px 0px 0px 0px;">
+                    <div class = "spinner">
+                        <div class = "bubble-1"></div>
+                        <div class = "bubble-2"></div>
+                    </div>
+                </div>
     </div>
 </body>
 </html>

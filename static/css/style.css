@@ -1,3 +1,13 @@
+* .load-wrapp {
+    float: left;
+    width: 100px;
+    height: 100px;
+    margin: 0 10px 10px 0;
+    padding: 20px 20px 20px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #F9DC5C;
+  }
 * {
     margin : 0;
     padding : 0;

@@ -168,7 +168,14 @@ def main(Dpath=None,Tpath=None,exe=None):
     #Tfilepath2 = r"C:\Users\jerar\Desktop\Study\CSC\textfiles"+'/' #노트북 용
 
     Extracting_docx(Dfilepath,Tfilepath)
-    Analysis_text(Tfilepath,exe)
+    #Analysis_text(Tfilepath,exe)
 
-if __name__ == "__main__":
-    main()
+    #docx 폴더 청소
+    #----코드----
+    #txt 폴더 청소
+    forders = os.listdir(Tfilepath)
+    for f in forders:
+        fpath = Tfilepath+f
+        shutil.rmtree(fpath)
+    
+    return "end"

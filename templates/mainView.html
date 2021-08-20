@@ -17,8 +17,10 @@
     <link rel = "stylesheet" type = "text/js" href = "{{url_for('static', filename='js/main.js')}}">
     <link href="style.css" media = "screen" rel = "stylesheet">
     <title>Term</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.5/brython.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.5/brython_stdlib.min.js"></script>
 </head>
-<body>
+<body onload="brython()">
     <div class = "wrap">
         <h1><span class = "material-icons">article</span></h1>
         <h2 style = " font-size: 4rem;">Term</h2>
@@ -26,8 +28,20 @@
         <script src = "static/js/main.js"></script>
         <form action="/fileupload" enctype="multipart/form-data" method="POST">
           <input type="file" accept = ".docx, .doc" name="file" multiple>
-          <button type="submit" class="btn btn-primary">Upload</button>
+          <button id='button' type="submit" class="btn btn-primary">Upload</button>
         </form>
+        <script type="text/python">
+            from flask import Flask, render_template
+            from browser import document
+            from mainProgram import *
+
+            def alert(event):
+                result = main()
+                if result == "end":
+                    return render_template('upload.html')
+
+            document['button'].bind("click", alert)
+        </script>
     </div>
 </body>
 </html>

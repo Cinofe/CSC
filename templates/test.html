@@ -1,0 +1,19 @@
+<html>
+    <head>
+        
+    </head>
+    <body onload="brython()">
+        <button id='test-button'>눌러봐요</button>
+
+    </body>
+</html>
+<script type="text/python">
+    from browser import document
+    from browser.widgets.dialog import InfoDialog
+
+    def alert(event):
+        InfoDialog("Hello", "버튼이 눌렸다!")
+    
+    document["test-button"].bind("click", alert)
+
+</script>
