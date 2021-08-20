@@ -12,13 +12,19 @@
     <div class = "wrap">
         <h1><span class = "material-icons">article</span></h1>
         <h2 style = " font-size: 4rem;">Term</h2>
-        <span class="text"></span><span class = "blink2">업로드가 완료되었습니다.</span>
-        <form method="GET" action='download_file'>
-            <button type="submit">다운로드</button>
-        </form>
-        <form action="/" enctype="multipart/form-data" method="POST">
-            <button type="button" class="btn btn-primary"onClick="location.href='/'">확인</button>
-        </form>
+        <span class="text"></span>
+        <span class = "blink2">업로드가 완료되었습니다.</span>
+        <br>
+        <div style="float:left; margin-left:35%;margin-right:20px;">
+            <form method="GET" action='download_file'>
+                <button type="submit">다운로드</button>
+            </form>
+        </div>
+        <div style="float:left;">
+            <form action="/" enctype="multipart/form-data" method="POST">
+                <button type="button" class="btn btn-primary"onClick="location.href='/'">돌아가기</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>

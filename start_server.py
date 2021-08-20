@@ -23,6 +23,7 @@ def upload_file():
             else:
                 flash("docx 형식 워드 파일만 선택 가능합니다.")
                 return render_template('mainView.html')
+
 @app.route('/complete')
 def complete():
     main()
@@ -33,5 +34,6 @@ def download_file():
     filepath = r"D:\seungwan\Desktop\AI_Study\Projects\CSC\webapp\flaskapp\files\Result\Text"+'/result.txt'
     return send_file(filepath, mimetype='text/txt',attachment_filename='result.txt',as_attachment=True)
 
+app.debug = True
 app.run(host = '0.0.0.0', port=80)
 #http://www.terms.kro.kr
