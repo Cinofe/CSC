@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
 from mainProgram import *
 
 app = Flask(__name__)
+app.secret_key = 'abcd1234!@#$'
 
 @app.route('/')
 def rendering():
@@ -11,9 +12,17 @@ def rendering():
 def upload_file():
     if request.method == 'POST':
         f = request.files['file']
-        f.save(r'D:\seungwan\Desktop\AI_Study\Projects\CSC\DocxFiles'+'/'+f.filename)
-        return render_template('upload.html')
+        if f.filename == "":
+            flash("파일을 선택하세요.")
+            return render_template('mainView.html')
+        else:
+            if ('.docx' in f.filename) or ('.doc' in f.filename):
+                f.save(r'D:\seungwan\Desktop\AI_Study\Projects\CSC\webapp\flaskapp\files\DocxFiles'+'/'+f.filename)
+                return render_template('upload.html')
+            else:
+                flash("docx 형식 워드 파일만 입력 가능합니다.")
+                return render_template('mainView.html')
 
 
 app.run(host = '0.0.0.0', port=80)
-#http://test.terms.kro.kr
+#http://www.terms.kro.kr
