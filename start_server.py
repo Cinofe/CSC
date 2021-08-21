@@ -1,9 +1,8 @@
 from flask import Flask, render_template, request, flash, redirect, send_file
 from mainProgram import *
-import time
+import time, ssl
 
 app = Flask(__name__)
-app.secret_key = 'abcd1234!@#$'
 
 @app.route('/')
 def mainView():
@@ -34,6 +33,11 @@ def download_file():
     filepath = r"D:\seungwan\Desktop\AI_Study\Projects\CSC\webapp\flaskapp\files\Result\Text"+'/result.txt'
     return send_file(filepath, mimetype='text/txt',attachment_filename='result.txt',as_attachment=True)
 
-app.debug = True
-app.run(host = '0.0.0.0', port=80)
-#http://www.terms.kro.kr
+if __name__ == '__main__':
+    
+    app.secret_key = 'abcd1234!@#$'
+    app.debug = True
+    context = ssl.SSLContext(ssl.PROTOCOL_TLS)
+    context.load_cert_chain(certfile='ssl인증서/server.crt', keyfile='ssl인증서/server.key', password='secret')
+    app.run(host = '0.0.0.0', port=443, ssl_context=context)
+    #http://www.terms.kro.kr
