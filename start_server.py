@@ -17,7 +17,7 @@ def upload_file():
             return render_template('mainView.html')
         else:
             if ('.docx' in f.filename) or ('.doc' in f.filename):
-                f.save(r'D:\seungwan\Desktop\AI_Study\Projects\CSC\webapp\flaskapp\files\DocxFiles')
+                f.save(r'D:\seungwan\Desktop\AI_Study\Projects\CSC\webapp\flaskapp\files\DocxFiles'+'/'+f.filename)
                 return render_template('wait.html')
             else:
                 flash("docx 형식 워드 파일만 선택 가능합니다.")
