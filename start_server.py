@@ -40,4 +40,4 @@ if __name__ == '__main__':
     context = ssl.SSLContext(ssl.PROTOCOL_TLS)
     context.load_cert_chain(certfile='ssl인증서/server.crt', keyfile='ssl인증서/server.key', password='secret')
     app.run(host = '0.0.0.0', port=443, ssl_context=context)
-    #http://www.terms.kro.kr
+    #http://terms.kro.kr
