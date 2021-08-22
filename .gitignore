@@ -150,6 +150,7 @@ __pycache__\
 files\DocxFiles
 files\Result
 files\textfiles
+ssl인증서\
 
 #File
 *.docx
