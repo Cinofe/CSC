@@ -59,6 +59,7 @@ def Extracting_docx(Dfilepath, Tfilepath):
                     file_no += 1
                 else :
                     sen_text = ''
+            #총 글자수가 700자 이상이면 한페이지로 정의 하고 문자 카운트 초기화
             if charCount >= 700:
                 charCount = 0
                 page_no += 1
@@ -137,25 +138,29 @@ def find_folder(bed_text,path):
     
 #페이지 폴더 안에 있는 문장들을 하나로 합치는 함수
 def combi_text(paths):
+    #합쳐질 문자를 담을 변수
     appendText = ''
     i = 1
     for path in paths:
         Texts = os.listdir(path[1])
         with open(path[1]+Texts[-1],'r',encoding='utf-8') as f:
+            #path에는 (해당 페이지, txt까지 경로)가 튜플 형태를 들어있다.
             if path[0] == i:
                 appendText += f'\t\t\t------------{path[0]}page------------\n'
                 i += 1
             appendText += f.read()
             appendText += '\n\n'
+    #합쳐진 txt를 저장할 경로
     new_path = r'D:\seungwan\Desktop\AI_Study\Projects\CSC\webapp\flaskapp\files\Result\Text'
     create_forlder(new_path)
     new_path = new_path + '/result.txt'
+    #이미 같은 파일이 있다면 제거후 입력
     if os.path.isfile(new_path):
         os.remove(new_path)
     with open(new_path,'a',encoding='utf-8') as nf:
         nf.write(appendText)
 
-
+#웹서버로 실행시 경로가 지정되어 있지만 exe 로 실행시 지정된 경로로 이동
 def main(Dpath=None,Tpath=None,exe=None):
     #여기에 자신의 파일 밑 폴더 경로 입력 
     if Dpath == None:
@@ -170,13 +175,13 @@ def main(Dpath=None,Tpath=None,exe=None):
     Extracting_docx(Dfilepath,Tfilepath)
     Analysis_text(Tfilepath,exe)
 
-    #docx 폴더 청소
+    #docx 폴더 청소(한번 실행이 끝나면 모든 파일을 삭제)
     forders = os.listdir(Dfilepath)
     for f in forders:
         fpath = Dfilepath+f
         os.remove(fpath)
     
-    #txt 폴더 청소
+    #txt 폴더 청소(한번 실행이 끝나면 모든 파일을 삭제)
     forders = os.listdir(Tfilepath)
     for f in forders:
         fpath = Tfilepath+f
