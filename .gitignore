@@ -156,3 +156,5 @@ ssl인증서\
 *.docx
 *.doc
 *.txt
+*.crt
+*.key
