@@ -1,7 +1,7 @@
 from tqdm import tqdm
 import Extracting_docx as dc
 import Analysis_API as api
-import os, shutil
+import os, shutil, time
 
 #폴더 생성 함수 중복 폴더 제거
 def create_forlder(path):
@@ -79,7 +79,7 @@ def Analysis_text(Tfilepath,exe):
     Dfiles = os.listdir(Tfilepath)
     os.system('cls')
     print('분석중...')
-    for f in range(1):#tqdm(range(len(Dfiles))):
+    for f in tqdm(range(len(Dfiles))):
         Pfiles = os.listdir(Tfilepath+Dfiles[f]+'/')
         print('분석중..')
         for P in tqdm(range(len(Pfiles))):
@@ -98,6 +98,7 @@ def Analysis_text(Tfilepath,exe):
                     if score <= -0.4:
                         bed_text.append(Texts[i])
                         scores.setdefault(Texts[i],score)
+                    time.sleep(0.2)
             page_no += 1
             if exe != None:
                 exe.progressbar.update()
@@ -106,9 +107,7 @@ def Analysis_text(Tfilepath,exe):
         page_no = 1
     
     findpages = find_folder(bed_text,Tfilepath)
-    print(bed_text)
-    print(scores)
-    print(findpages, len(findpages))
+
     combi_text(findpages)
 
 #bed_texts에 들어있는 문장들이 포함된 페이지 폴더 찾기
@@ -131,7 +130,7 @@ def find_folder(bed_text,path):
                 if bed_text[j] in texts:
                     #찾은 폴더의 경로가 이미 저장되어있다면 true 반환 이 경우는 없을때 경로를 저장해야 함으로 앞에 not을 붙여서
                     #false가 나왔을 경우 즉 저장된 경로가 없을경우 새로운 경로 추가
-                    if not(inPagePath in find):
+                    if not((p, str(inPagePath)) in find):
                         find.append((p,str(inPagePath)))
 
     return find
@@ -140,14 +139,14 @@ def find_folder(bed_text,path):
 def combi_text(paths):
     #합쳐질 문자를 담을 변수
     appendText = ''
-    i = 1
     for path in paths:
+        i = path[0]
         Texts = os.listdir(path[1])
         with open(path[1]+Texts[-1],'r',encoding='utf-8') as f:
             #path에는 (해당 페이지, txt까지 경로)가 튜플 형태를 들어있다.
             if path[0] == i:
                 appendText += f'\t\t\t------------{path[0]}page------------\n'
-                i += 1
+                i +=1
             appendText += f.read()
             appendText += '\n\n'
     #합쳐진 txt를 저장할 경로

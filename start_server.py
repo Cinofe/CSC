@@ -37,11 +37,11 @@ def complete():
     return render_template('upload.html')
 
 #완료된 화면에서 다운로드를 클릭할시 실행됨
-@app.root_path('/download_file')
+@app.route('/download_file')
 def download_file():
     #다운로드할 파일 경로
     filepath = r"D:\seungwan\Desktop\AI_Study\Projects\CSC\webapp\flaskapp\files\Result\Text" + "/result.txt"
-    #파일을 다운로듯 시켜줌
+    #파일을 다운로드 시켜줌
     return send_file(filepath, mimetype='text/txt',attachment_filename='result.txt', as_attachment=True)
 
 

@@ -4,30 +4,34 @@ from mainProgram import *
 
 class Exe:
     def start(self):
-        self.root = Tk()
-
-        self.root.title("Launcher")
-        self.root.geometry("600x155+600+200")
-        self.docxLabel = Label(self.root, text="문서 위치",font=(15))
-        self.docxLabel.place(x=15,y=20)
-        self.saveLabel = Label(self.root, text="txt 위치",font=(15))
-        self.saveLabel.place(x=15,y=60)
-        self.docxEntry = Entry(self.root,width=50)
+        root = Tk()
+        #프로그램 title
+        root.title("Launcher")
+        #프로그램 size
+        root.geometry("600x155+600+200")
+        #레이블
+        docxLabel = Label(root, text="문서 위치",font=(15))
+        docxLabel.place(x=15,y=20)
+        saveLabel = Label(root, text="txt 위치",font=(15))
+        saveLabel.place(x=15,y=60)
+        #버튼
+        docxButton = Button(root,text="문서 위치 설정",font=(15),width=12,command=self.add_docxPath)
+        docxButton.place(x=460,y=15)
+        saveButton = Button(root,text="txt 위치 설정",font=(15),width=12,command=self.add_savePath)
+        saveButton.place(x=460,y=55)
+        convertButton = Button(root, text="결과물 출력", font=(15),width=12,height=2,command=self.startProgram)
+        convertButton.place(x=460,y=95)
+        #프로그레스 바(진행 바)
+        p_bar = DoubleVar()
+        progressbar = ttk.Progressbar(root, maximum=39, length=430, variable=p_bar)
+        progressbar.place(x=15,y=110)
+        #한 줄 입력 박스
+        self.docxEntry = Entry(root,width=50)
         self.docxEntry.place(x=100, y=20)
-        self.saveEntry = Entry(self.root,width=50)
+        self.saveEntry = Entry(root,width=50)
         self.saveEntry.place(x=100,y=60)
-        self.docxButton = Button(self.root,text="문서 위치 설정",font=(15),width=12,command=self.add_docxPath)
-        self.docxButton.place(x=460,y=15)
-        self.saveButton = Button(self.root,text="txt 위치 설정",font=(15),width=12,command=self.add_savePath)
-        self.saveButton.place(x=460,y=55)
 
-        self.convertButton = Button(self.root, text="결과물 출력", font=(15),width=12,height=2,command=self.startProgram)
-        self.convertButton.place(x=460,y=95)
-
-        self.p_bar = DoubleVar()
-        self.progressbar = ttk.Progressbar(self.root, maximum=39, length=430, variable=self.p_bar)
-        self.progressbar.place(x=15,y=110)
-        self.root.mainloop()
+        root.mainloop()
 
     def startProgram(self):
         if self.docxEntry.get() == "" or self.saveEntry.get() == "":
