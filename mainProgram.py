@@ -84,7 +84,7 @@ def Analysis_text(Tfilepath,exe):
         print('분석중..')
         for P in tqdm(range(len(Pfiles))):
             if exe != None:
-                exe.p_bar.set((P/len(Pfiles))*100)
+                exe.p_bar.set((P/(len(Pfiles)-1))*100)
             #각 페이지 폴더 전체 경로
             PagePath = Tfilepath+'Document'+str(doc_no)+'/'+str(
                 page_no)+' page/'
@@ -93,14 +93,18 @@ def Analysis_text(Tfilepath,exe):
             print('분석중.')
             for i in tqdm(range(len(Texts))):
                 if exe != None:
-                    exe.p_bar2.set(((i+1)/len(Texts))*100)
+                    exe.p_bar2.set((i/(len(Texts)-1))*100)
                 #alltext안나오게 해야함
                 if Texts[i].find('all') == -1:
-                    score = float(api.Analysis_Text(PagePath+Texts[i]))
+                    try:
+                        score = float(api.Analysis_Text(PagePath+Texts[i]))
+                    except:
+                        if exe != None:
+                            exe.alert()
                     if score <= -0.4:
                         bed_text.append(Texts[i])
                         scores.setdefault(Texts[i],score)
-                    time.sleep(0.2)
+                    #time.sleep(0.2)
                 if exe != None:
                     exe.progressbar2.update()
             page_no += 1
@@ -169,12 +173,11 @@ def main(Dpath=None,Tpath=None,exe=None):
         Dfilepath = r"D:\seungwan\Desktop\AI_Study\Projects\CSC\webapp\flaskapp\files\DocxFiles"+'/'
         Tfilepath = r"D:\seungwan\Desktop\AI_Study\Projects\CSC\webapp\flaskapp\files\textfiles"+'/'
     else:
-        Dfilepath = Dpath #집 용
-        Tfilepath = Tpath #집 용
-    #Dfilepath2 = r"C:\Users\jerar\Desktop\Study\CSC\DocxFiles"+'/' #노트북 용
-    #Tfilepath2 = r"C:\Users\jerar\Desktop\Study\CSC\textfiles"+'/' #노트북 용
-
+        Dfilepath = Dpath
+        Tfilepath = Tpath
+    #텍스트 추출 작업
     Extracting_docx(Dfilepath,Tfilepath)
+    #감정 점수 분석 후 분류작업
     Analysis_text(Tfilepath,exe)
 
     #docx 폴더 청소(한번 실행이 끝나면 모든 파일을 삭제)

@@ -16,7 +16,7 @@ body {
     left : 50%;  
     transform : translate(-50%, -50%);
     color : #ED254E;
-    line-height : 65%;
+    line-height : 45%;
 }
 
 .material-icons {
@@ -45,7 +45,7 @@ body {
     }
 }
 
-@media(max-width : 767px) {
+@media(max-width : 787px) {
     .text {
         font-size : 1.5rem;
         color : #465362;

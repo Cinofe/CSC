@@ -1,9 +1,15 @@
 {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <script>
-            alert("{{messages[-1]}}")
+    {% if messages[0] == 'error' %}
+        <script type="text/javascript">
+            alert("Api 할당 오류.\n잠시후 다시 시도하세요")
         </script>
-    {% endif %}
+        <script>location.href = '/'</script>
+    {% elif messages %}
+        <script type="text/javascript">
+            alert("{{messages[0]}}")
+        </script>
+        <script>location.href = '/'</script>
+    {% endif%}
 {% endwith %}
 
 <!DOCTYPE html>

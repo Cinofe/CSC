@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, send_file
+from flask import Flask, render_template, request, flash, send_file, Response
 from mainProgram import *
 import ssl
 
@@ -17,7 +17,7 @@ def upload_file():
         #입력된 파일 없다면 경고창 출력
         f = request.files['file']
         if f.filename == "":
-            flash("파일을 선택하세요.")
+            flash('파일을 선택하세요.')
             return render_template('mainView.html')
         else:
             #입력된 파일이 워드 형식이 아니라면 경고창 출력
@@ -29,10 +29,14 @@ def upload_file():
                 flash("docx 형식 워드 파일만 선택 가능합니다.")
                 return render_template('mainView.html')
 #처리중 화면에서 해당 경로 호출
-@app.route('/complete')
+@app.route('/complete', methods = ['GET'])
 def complete():
     #호출되면 메인코드가 실행되고
-    main()
+    try:
+        main()
+    except:
+        flash('error')
+        return render_template('mainView.html')
     #메인 코드가 끝나면 완료된 화면을 보여줌
     return render_template('upload.html')
 
@@ -44,10 +48,10 @@ def download_file():
     #파일을 다운로드 시켜줌
     return send_file(filepath, mimetype='text/txt',attachment_filename='result.txt', as_attachment=True)
 
-
 if __name__ == "__main__":
 
     context = ssl.SSLContext(ssl.PROTOCOL_TLS)
     context.load_cert_chain(certfile='ssl/server.crt',keyfile='ssl/server.key', password='OMG')
+    app.secret_key = 'qwer1234!@#$'
 
     app.run(host='0.0.0.0', port='443', ssl_context=context)
