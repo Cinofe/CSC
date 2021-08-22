@@ -29,7 +29,7 @@ class Exe:
         convertButton.place(x=460,y=95)
         #프로그레스 바(진행 바)
         self.p_bar = DoubleVar()
-        self.progressbar = ttk.Progressbar(root, maximum=100, length=385, variable=self.p_bar)
+        self.progressbar = ttk.Progressbar(root, maximum=99, length=385, variable=self.p_bar)
         self.progressbar.place(x=60,y=105)
         self.p_bar2 = DoubleVar()
         self.progressbar2 = ttk.Progressbar(root, maximum=100, length=385, variable=self.p_bar2) 
