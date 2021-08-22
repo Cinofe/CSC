@@ -104,7 +104,7 @@ def Analysis_text(Tfilepath,exe):
                     if score <= -0.4:
                         bed_text.append(Texts[i])
                         scores.setdefault(Texts[i],score)
-                    #time.sleep(0.2)
+                    time.sleep(0.1)
                 if exe != None:
                     exe.progressbar2.update()
             page_no += 1

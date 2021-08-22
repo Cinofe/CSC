@@ -46,7 +46,7 @@ def download_file():
     #다운로드할 파일 경로
     filepath = r"D:\seungwan\Desktop\AI_Study\Projects\CSC\webapp\flaskapp\files\Result\Text" + "/result.txt"
     #파일을 다운로드 시켜줌
-    return send_file(filepath, mimetype='text/txt',attachment_filename='result.txt', as_attachment=True)
+    return send_file(filepath, mimetype='text/txt',download_name='result.txt', as_attachment=True)
 
 if __name__ == "__main__":
 
