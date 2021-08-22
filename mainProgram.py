@@ -84,7 +84,7 @@ def Analysis_text(Tfilepath,exe):
         print('분석중..')
         for P in tqdm(range(len(Pfiles))):
             if exe != None:
-                exe.p_bar.set(P)
+                exe.p_bar.set((P/len(Pfiles))*100)
             #각 페이지 폴더 전체 경로
             PagePath = Tfilepath+'Document'+str(doc_no)+'/'+str(
                 page_no)+' page/'
@@ -92,6 +92,8 @@ def Analysis_text(Tfilepath,exe):
             Texts = os.listdir(PagePath)
             print('분석중.')
             for i in tqdm(range(len(Texts))):
+                if exe != None:
+                    exe.p_bar2.set(((i+1)/len(Texts))*100)
                 #alltext안나오게 해야함
                 if Texts[i].find('all') == -1:
                     score = float(api.Analysis_Text(PagePath+Texts[i]))
@@ -99,6 +101,8 @@ def Analysis_text(Tfilepath,exe):
                         bed_text.append(Texts[i])
                         scores.setdefault(Texts[i],score)
                     time.sleep(0.2)
+                if exe != None:
+                    exe.progressbar2.update()
             page_no += 1
             if exe != None:
                 exe.progressbar.update()
@@ -107,7 +111,6 @@ def Analysis_text(Tfilepath,exe):
         page_no = 1
     
     findpages = find_folder(bed_text,Tfilepath)
-
     combi_text(findpages)
 
 #bed_texts에 들어있는 문장들이 포함된 페이지 폴더 찾기
@@ -185,3 +188,6 @@ def main(Dpath=None,Tpath=None,exe=None):
     for f in forders:
         fpath = Tfilepath+f
         shutil.rmtree(fpath)
+
+    if exe != None:
+        exe.open_file()
