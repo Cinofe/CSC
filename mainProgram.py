@@ -60,7 +60,7 @@ def Extracting_docx(Dfilepath, Tfilepath):
                 else :
                     sen_text = ''
             #총 글자수가 700자 이상이면 한페이지로 정의 하고 문자 카운트 초기화
-            if charCount >= 700:
+            if charCount >= 850:
                 charCount = 0
                 page_no += 1
                 create_forlder(Tfilepath+'Document'+str(doc_no)+'/'+str(page_no)+' page')
@@ -101,10 +101,10 @@ def Analysis_text(Tfilepath,exe):
                     except:
                         if exe != None:
                             exe.alert()
-                    if score <= -0.4:
+                    if score <= -0.9:
                         bed_text.append(Texts[i])
                         scores.setdefault(Texts[i],score)
-                    time.sleep(0.1)
+                    time.sleep(0.05)
                 if exe != None:
                     exe.progressbar2.update()
             page_no += 1
