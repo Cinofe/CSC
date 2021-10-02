@@ -157,7 +157,7 @@ def combi_text(paths):
             appendText += f.read()
             appendText += '\n\n'
     #합쳐진 txt를 저장할 경로
-    new_path = r'D:\seungwan\Desktop\AI_Study\Projects\CSC\webapp\flaskapp\files\Result\Text'
+    new_path = r'D:\seungwan\Desktop\Study\Python\AI_Study\Projects\CSC\webapp\flaskapp\files\Result\Text'
     create_forlder(new_path)
     new_path = new_path + '/result.txt'
     #이미 같은 파일이 있다면 제거후 입력
@@ -170,8 +170,8 @@ def combi_text(paths):
 def main(Dpath=None,Tpath=None,exe=None):
     #여기에 자신의 파일 밑 폴더 경로 입력 
     if Dpath == None:
-        Dfilepath = r"D:\seungwan\Desktop\AI_Study\Projects\CSC\webapp\flaskapp\files\DocxFiles"+'/'
-        Tfilepath = r"D:\seungwan\Desktop\AI_Study\Projects\CSC\webapp\flaskapp\files\textfiles"+'/'
+        Dfilepath = r"D:\seungwan\Desktop\Study\Python\AI_Study\Projects\CSC\webapp\flaskapp\files\DocxFiles"+'/'
+        Tfilepath = r"D:\seungwan\Desktop\Study\Python\AI_Study\Projects\CSC\webapp\flaskapp\files\textfiles"+'/'
     else:
         Dfilepath = Dpath
         Tfilepath = Tpath

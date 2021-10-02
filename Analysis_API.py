@@ -21,9 +21,9 @@ def get_prediction(file_path, model_full_id):
 
 def Analysis_Text(path):
     #프로젝트 ID
-    project_id = "hallowed-forge-321813"
+    project_id = ""
     #모델 ID
-    model_id = "TST4838649407656165376"
+    model_id = ""
     #모델 경로 ID
     model_full_id = automl.AutoMlClient.model_path(project_id, "us-central1", model_id)
     #분석할 파일 경로

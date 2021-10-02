@@ -23,7 +23,7 @@ def upload_file():
             #입력된 파일이 워드 형식이 아니라면 경고창 출력
             if ('.docx' in f.filename) or ('.doc' in f.filename):
                 #워드 형식 파일이라면 처리중 화면을 보여줌
-                f.save(r'D:\seungwan\Desktop\AI_Study\Projects\CSC\webapp\flaskapp\files\DocxFiles'+'/'+f.filename)
+                f.save(r'D:\seungwan\Desktop\Study\Python\AI_Study\Projects\CSC\webapp\flaskapp\files\DocxFiles'+'/'+f.filename)
                 return render_template('wait.html')
             else:
                 flash("docx 형식 워드 파일만 선택 가능합니다.")
@@ -44,14 +44,14 @@ def complete():
 @app.route('/download_file')
 def download_file():
     #다운로드할 파일 경로
-    filepath = r"D:\seungwan\Desktop\AI_Study\Projects\CSC\webapp\flaskapp\files\Result\Text" + "/result.txt"
+    filepath = r"D:\seungwan\Desktop\Study\Python\AI_Study\Projects\CSC\webapp\flaskapp\files\textfiles" + "/result.txt"
     #파일을 다운로드 시켜줌
     return send_file(filepath, mimetype='text/txt',download_name='result.txt', as_attachment=True)
 
 if __name__ == "__main__":
 
     context = ssl.SSLContext(ssl.PROTOCOL_TLS)
-    context.load_cert_chain(certfile='ssl/server.crt',keyfile='ssl/server.key', password='OMG')
+    context.load_cert_chain(certfile='ssl/certificate.crt',keyfile='ssl/private.key', password='OMG')
     app.secret_key = 'qwer1234!@#$'
 
     app.run(host='0.0.0.0', port='443', ssl_context=context)
