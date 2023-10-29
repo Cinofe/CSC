@@ -1,0 +1,60 @@
+* {
+    margin : 0;
+    padding : 0;
+    box-sizing : border-box;
+}
+
+body {
+    background-color : #f9DC5C;
+    text-align : center;
+    font-size : 100px;
+}
+
+.wrap {
+    position : absolute;
+    top : 50%;
+    left : 50%;  
+    transform : translate(-50%, -50%);
+    color : #ED254E;
+    line-height : 45%;
+}
+
+.material-icons {
+    font-size : 10rem;
+}
+
+.text {
+    font-size : 2.5rem;
+    color : #465362;
+}
+.blink {
+    animation : blink 0.5s infinite;
+    font-size : 2.5rem;
+    color : #465362;
+}
+
+.blink2 {
+    animation : blink 3s infinite;
+    font-size : 2.5rem;
+    color : #465362;
+}
+
+@keyframes blink {
+    to {
+        opacity : 0;
+    }
+}
+
+@media(max-width : 787px) {
+    .text {
+        font-size : 1.5rem;
+        color : #465362;
+    }
+
+    .blink {
+        animation : blink 0.5s infinite;
+        font-size : 1.5rem;
+        color : #465362;
+    }
+}
+

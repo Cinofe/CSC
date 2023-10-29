@@ -1,0 +1,39 @@
+{% with messages = get_flashed_messages() %}
+    {% if messages[0] == 'error' %}
+        <script type="text/javascript">
+            alert("Api 할당 오류.\n잠시후 다시 시도하세요")
+        </script>
+        <script>location.href = '/'</script>
+    {% elif messages %}
+        <script type="text/javascript">
+            alert("{{messages[0]}}")
+        </script>
+        <script>location.href = '/'</script>
+    {% endif%}
+{% endwith %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel = "stylesheet">
+    <link rel = "shortcut icon" href = "favicon.ico" type="image/x-icon">
+    <link rel = "stylesheet" type = "text/css" href = "{{url_for('static', filename='css/style.css')}}">
+    <link rel = "stylesheet" type = "text/js" href = "{{url_for('static', filename='js/main.js')}}">
+    <link href="style.css" media = "screen" rel = "stylesheet">
+    <title>Term</title>
+</head>
+<body>
+    <div class = "wrap">
+        <h1><span class = "material-icons">article</span></h1>
+        <h2 style = " font-size: 4rem;">Term</h2>
+        <span class="text"></span><span class = "blink">|</span>
+        <script src = "static/js/main.js"></script>
+        <form action="/fileupload" enctype="multipart/form-data" method="POST">
+          <input type="file" accept = ".docx, .doc" name="file" multiple>
+          <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+    </div>
+</body>
+</html>
